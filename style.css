@@ -122,3 +122,11 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+button:hover{
+    cursor: pointer;
+}
+.btn-default{
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+}
