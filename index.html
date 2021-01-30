@@ -111,29 +111,14 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button onclick="displayAlert();" id="ticket-booked" class="btn-style">Book Now</button>
         </div>
     </main>
 
     <!--Thank You-->
 
-    <!--Javascript start from here-->
+    <!--Javascript starts from here-->
     <script>
-        //first class
-        // document.getElementById('first-increase').addEventListener('click', function () {
-        //     handleTicketChange('first' , true);
-        // })
-        // document.getElementById('first-decrease').addEventListener('click', function () {
-        //     handleTicketChange('first' , false);
-        // })
-        // //economy class
-        // document.getElementById('economy-increase').addEventListener('click', function () {
-        //     handleTicketChange('economy' , true);
-        // })
-        // document.getElementById('economy-decrease').addEventListener('click', function () {
-        //     handleTicketChange('economy', false);
-        // })
-
         //handle ticket
         function handleTicketChange(ticket, isIncrease) {
             const ticketInput = document.getElementById(ticket + '-count');
@@ -151,13 +136,10 @@
             calculateTotal();
         }
 
-        //total calcutator
+        //total calcutator 
         function calculateTotal() {
-            const firstClassInput = document.getElementById('first-count');
-            const firstClassInputCount = parseInt(firstClassInput.value);
-
-            const economyClassInput = document.getElementById('economy-count');
-            const economyClassInputCount = parseInt(economyClassInput.value);
+            const firstClassInputCount = getTicketInput('first');
+            const economyClassInputCount = getTicketInput('economy');
 
             const subTotalPrice = firstClassInputCount * 150 + economyClassInputCount * 100;
             document.getElementById('sub-totalPrice').innerText = subTotalPrice;
@@ -169,47 +151,21 @@
             document.getElementById('total-price').innerText = totalPrice;
         }
 
-        // //economy class ticket handle
-        // function economyClassTicketChange(isIncrease) {
-        //     const economyClassInput = document.getElementById('economy-count');
-        //     const economyClassNumber = parseInt(economyClassInput.value);
-        //     let newEconomyClassNumber = economyClassNumber;
+        //get ticketInput
+        function getTicketInput(ticket) {
+            const ticketInput = document.getElementById(ticket + '-count');
+            const ticketCount = parseInt(ticketInput.value);
+            return ticketCount;
+        }
 
-        //     if (isIncrease == true) {
-        //         newEconomyClassNumber = economyClassNumber + 1;
-        //     }
-        //     if (isIncrease == false && newEconomyClassNumber > 0) {
-        //         newEconomyClassNumber = economyClassNumber - 1;
-        //     }
-        //     economyClassInput.value = newEconomyClassNumber;
-        // }
+        //display message for confirmation
+        function displayAlert() {
+            const firstClassInputCount = getTicketInput('first');
+            const economyClassInputCount = getTicketInput('economy');
 
-        // //first class ticket handle
-        // function firstClassTicketChange(isIncrease) {
-        //     const firstClassInput = document.getElementById('first-count');
-        //     const firstClassNumber = parseInt(firstClassInput.value);
-        //     let newFirstClassNumber = firstClassNumber;
-        //     //const newFirstClassNumber = firstClassNumber + 1;
-        //     if (isIncrease == true) {
-        //         newFirstClassNumber = firstClassNumber + 1;
-        //     }
-        //     if (isIncrease == false && newFirstClassNumber > 0) {
-        //         newFirstClassNumber = firstClassNumber - 1;
-        //     }
-        //     firstClassInput.value = newFirstClassNumber;
-        // }
-        // document.getElementById('first-increase').addEventListener('click', function () {
-        //     const firstClassInput = document.getElementById('first-count');
-        //     const firstClassNumber = parseInt(firstClassInput.value);
-        //     const newFirstClassNumber = firstClassNumber + 1;
-        //     firstClassInput.value = newFirstClassNumber;
-        // })
-        // document.getElementById('first-decrease').addEventListener('click',function(){
-        //     const firstClassInput = document.getElementById('first-count');
-        //     const firstClassNumber = parseInt(firstClassInput.value);
-        //     const newFirstClassNumber = firstClassNumber - 1;
-        //     firstClassInput.value = newFirstClassNumber;
-        // })
+            let newLine = "\r\n"
+            alert('You have booked ' + firstClassInputCount + ' first class ticket' + ' and ' + economyClassInputCount + ' economy class ticket.' + newLine + newLine + 'Thank you.');
+        }
     </script>
 </body>
 
